@@ -40,9 +40,9 @@ resid.linreg <-  function(object){
 
 #' Predicted values for a linreg object
 #'
-#' @param object An object of class linreg
+#' @param object
 #'
-#' @returns A linreg object predicted values
+#' @returns linreg object predicted values
 #' @export
 #'
 pred.linreg <-  function(object){
