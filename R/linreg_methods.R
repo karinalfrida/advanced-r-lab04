@@ -27,7 +27,6 @@ print.linreg <- function(x, ...){
   invisible(x)
 }
 
-
 #' Residuals for a linreg object
 #'
 #' @param object An object of class linreg
@@ -35,13 +34,22 @@ print.linreg <- function(x, ...){
 #'
 #' @returns linreg object residuals as the difference between predicted and actual response values
 #'
-#' @importFrom stats resid
+#' @importFrom stats residuals
 #' @export
 #'
-resid.linreg <-  function(object, ...){
+residuals.linreg <-  function(object, ...){ # stat::resid() calls residuals()
   return(object$e_hat)
 }
 
+#' Predicted values generic function
+#'
+#' @param object An object.
+#' @param ... Additional arguments.
+#'
+#' @export
+pred <- function(object, ...) {
+  UseMethod("pred") # use linreg method
+}
 
 #' Predicted values for a linreg object
 #'

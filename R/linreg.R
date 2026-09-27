@@ -31,7 +31,9 @@ linreg <- function(formula, data){
   y_hat <-  X %*% beta_hat
 
   # e_hat = residuals
-  e_hat <- y - y_hat
+  e_hat <-
+    (y - y_hat) |>
+    as.vector()
 
   # degrees of freedom
   df <-  nrow(X) - ncol(X)
@@ -51,7 +53,7 @@ linreg <- function(formula, data){
   # t_values = t values for the regression coefficients
   t_values <-
     (beta_hat / sqrt(beta_hat_var))|>
-    as.numeric()
+    as.vector()
 
   # p_values = p values for the regression coefficients
   p_values <- pt(t_values, df= df)
