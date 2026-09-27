@@ -2,6 +2,7 @@
 # lab04
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/karinalfrida/advanced-r-lab04/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/karinalfrida/advanced-r-lab04/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of lab04 is to create a package for multiple regression, creating a linreg object from a formula and data, 
