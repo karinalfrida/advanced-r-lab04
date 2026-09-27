@@ -5,9 +5,7 @@
 #' @param data A data frame on which the regression will be done
 #'
 #' @returns A linreg object
-#' @export
 #'
-#' @examples
 linreg <- function(formula, data){
 
   ### extract model
