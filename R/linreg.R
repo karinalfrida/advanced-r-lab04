@@ -1,10 +1,10 @@
 
 #' linreg(formula, data)
 #'
-#' @param formula = y ~
-#' @param data
+#' @param formula A linear regression in the form  y ~ var1 + var2 ...
+#' @param data A data frame on which the regression will be done
 #'
-#' @returns
+#' @returns A linreg object
 #' @export
 #'
 #' @examples
