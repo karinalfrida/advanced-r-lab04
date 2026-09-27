@@ -10,7 +10,6 @@
 #' @returns Invisibly the linreg object
 #' @export
 #'
-#' @examples
 print.linreg <- function(x, ...){
   cat("Linear regression call:\n")
   print(x$formula)
@@ -30,24 +29,25 @@ print.linreg <- function(x, ...){
 #' Residuals for a linreg object
 #'
 #' @param object An object of class linreg
+#' @param ... Additional arguments to be passed to the print method
 #'
 #' @returns linreg object residuals as the difference between predicted and actual response values
+#'
+#' @importFrom stats resid
 #' @export
 #'
-#' @examples
-resid.linreg <-  function(object){
+resid.linreg <-  function(object, ...){
   return(object$e_hat)
 }
 
 
 #' Predicted values for a linreg object
 #'
-#' @param object
+#' @param object A linreg object
 #'
 #' @returns linreg object predicted values
 #' @export
 #'
-#' @examples
 pred.linreg <-  function(object){
   return(object$y_hat)
 }
@@ -55,13 +55,15 @@ pred.linreg <-  function(object){
 
 #' Regression coefficients for a linreg object
 #'
-#' @param object
+#' @param object An object of class linreg
+#' @param ... Additional arguments to be passed to the print method
 #'
 #' @returns linreg object regression coefficients
+#'
+#' @importFrom stats coef
 #' @export
 #'
-#' @examples
-coef.linreg <-  function(object){
+coef.linreg <-  function(object, ...){
   coeffs_table <-
     rbind(
       Estimate = as.vector(object$beta_hat)
