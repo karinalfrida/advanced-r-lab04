@@ -57,17 +57,18 @@ linreg <- function(formula, data){
   linreg_obj <-
     structure(
       list(
-           X = X,
-           y = y,
-           y_name = y_name,
-           beta_hat = beta_hat,
-           y_hat = y_hat,
-           e_hat = e_hat,
-           df = df,
-           sigma_hat_squared = sigma_hat_squared,
-           beta_hat_var = beta_hat_var,
-           t_values = t_values,
-           p_values = p_values),
+        formula = formula,
+        X = X,
+        y = y,
+        y_name = y_name,
+        beta_hat = beta_hat,
+        y_hat = y_hat,
+        e_hat = e_hat,
+        df = df,
+        sigma_hat_squared = sigma_hat_squared,
+        beta_hat_var = beta_hat_var,
+        t_values = t_values,
+        p_values = p_values),
       class = "linreg")
 
   return(linreg_obj)
