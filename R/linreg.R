@@ -18,6 +18,9 @@ linreg <- function(formula, data){
   y_name <- all.vars(formula)[1]
   y <- data[[y_name]]
 
+  # keep the call
+  call_arg <- match.call()
+
   ### calculate multiple linear regression statistics
   # beta_hat = regression coefficients (ordinary linear algebra)
   Xt <- t(X)
@@ -58,6 +61,7 @@ linreg <- function(formula, data){
     structure(
       list(
         formula = formula,
+        call_arg = call_arg,
         X = X,
         y = y,
         y_name = y_name,

@@ -11,8 +11,10 @@
 #' @export
 #'
 print.linreg <- function(x, ...){
-  cat("Linear regression call:\n")
-  print(x$formula)
+  # cat("Linear regression call:\n")
+  # print(x$formula)
+
+  print(x$call_arg)
 
   # create a coefficints table
   coeffs_table <-
