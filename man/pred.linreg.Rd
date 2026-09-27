@@ -7,10 +7,10 @@
 pred.linreg(object)
 }
 \arguments{
-\item{object}{An object of class linreg}
+\item{object}{A linreg object}
 }
 \value{
-A linreg object predicted values
+linreg object predicted values
 }
 \description{
 Predicted values for a linreg object

@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^extra$
 ^LICENSE\.md$
+^^\.*\\.Rproj$$
+^^\\.Rproj\\.user$$
+^advanced-r-lab04\.Rproj$

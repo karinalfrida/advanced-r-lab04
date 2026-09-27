@@ -3,4 +3,11 @@
 S3method(coef,linreg)
 S3method(print,linreg)
 S3method(resid,linreg)
+export(linreg)
 export(pred.linreg)
+importFrom(stats,
+  coef,
+  model.matrix,
+  pt,
+  resid
+)

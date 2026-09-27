@@ -4,10 +4,12 @@
 \alias{resid.linreg}
 \title{Residuals for a linreg object}
 \usage{
-\method{resid}{linreg}(object)
+\method{resid}{linreg}(object, ...)
 }
 \arguments{
 \item{object}{An object of class linreg}
+
+\item{...}{Additional arguments to be passed to the print method}
 }
 \value{
 linreg object residuals as the difference between predicted and actual response values

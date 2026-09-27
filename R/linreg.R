@@ -6,6 +6,8 @@
 #'
 #' @returns A linreg object
 #'
+#' @importFrom stats model.matrix pt
+#' @export
 linreg <- function(formula, data){
 
   ### extract model
