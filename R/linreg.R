@@ -73,9 +73,3 @@ linreg <- function(formula, data){
   return(linreg_obj)
 }
 
-
-
-
-data(iris)
-
-linreg(formula =Petal.Length~Species, data = iris)
