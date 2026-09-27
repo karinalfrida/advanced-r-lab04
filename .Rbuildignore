@@ -1,3 +1,10 @@
 ^lab04\.Rproj$
 ^\.Rproj\.user$
 ^course-material$
+^extra$
+^LICENSE\.md$
+^^\.*\\.Rproj$$
+^^\\.Rproj\\.user$$
+^advanced-r-lab04\.Rproj$
+^\.github$
+^test_linreg_ref_class\.R$
