@@ -27,6 +27,7 @@ print.linreg <- function(x, ...){
   invisible(x)
 }
 
+
 #' Residuals for a linreg object
 #'
 #' @param object An object of class linreg.
@@ -41,6 +42,7 @@ residuals.linreg <-  function(object, ...){ # stat::resid() calls residuals()
   return(object$e_hat)
 }
 
+
 #' Predicted values generic function
 #'
 #' @param object An object of class linreg.
@@ -50,6 +52,7 @@ residuals.linreg <-  function(object, ...){ # stat::resid() calls residuals()
 pred <- function(object, ...) {
   UseMethod("pred") # use linreg method
 }
+
 
 #' Predicted values for a linreg object
 #'
