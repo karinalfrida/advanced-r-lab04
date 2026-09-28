@@ -7,9 +7,9 @@
 pred(object, ...)
 }
 \arguments{
-\item{object}{An object.}
+\item{object}{An object of class linreg.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments for compatibility with generic method}
 }
 \description{
 Predicted values generic function

@@ -7,9 +7,9 @@
 \method{residuals}{linreg}(object, ...)
 }
 \arguments{
-\item{object}{An object of class linreg}
+\item{object}{An object of class linreg.}
 
-\item{...}{Additional arguments to be passed to the print method}
+\item{...}{Additional arguments for compatibility with generic method}
 }
 \value{
 linreg object residuals as the difference between predicted and actual response values

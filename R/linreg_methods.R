@@ -5,7 +5,7 @@
 #' Prints the regression coefficients of a linreg object
 #'
 #' @param x An object of class linreg
-#' @param ... Additional arguments
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @returns Invisibly the linreg object
 #' @export
@@ -29,8 +29,8 @@ print.linreg <- function(x, ...){
 
 #' Residuals for a linreg object
 #'
-#' @param object An object of class linreg
-#' @param ... Additional arguments
+#' @param object An object of class linreg.
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @returns linreg object residuals as the difference between predicted and actual response values
 #'
@@ -43,8 +43,8 @@ residuals.linreg <-  function(object, ...){ # stat::resid() calls residuals()
 
 #' Predicted values generic function
 #'
-#' @param object An object.
-#' @param ... Additional arguments.
+#' @param object An object of class linreg.
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @export
 pred <- function(object, ...) {
@@ -53,12 +53,13 @@ pred <- function(object, ...) {
 
 #' Predicted values for a linreg object
 #'
-#' @param object A linreg object
+#' @param object An object of class linreg.
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @returns linreg object predicted values
 #' @export
 #'
-pred.linreg <-  function(object){
+pred.linreg <-  function(object, ...){
   return(object$y_hat)
 }
 
@@ -66,7 +67,7 @@ pred.linreg <-  function(object){
 #' Regression coefficients for a linreg object
 #'
 #' @param object An object of class linreg
-#' @param ... Additional arguments
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @returns linreg object regression coefficients
 #'
@@ -86,11 +87,11 @@ coef.linreg <-  function(object, ...){
 #' Summary of regression results for a linreg object
 #'
 #' @param object An object of class linreg
-#' @param ... Additional arguments
+#' @param ... Additional arguments for compatibility with generic method
 #'
 #' @returns Invisibly the linreg object
 #'
-#' @importFrom stats coef
+#' @importFrom stats printCoefmat
 #' @export
 #'
 summary.linreg <-  function(object, ...){
@@ -108,7 +109,7 @@ summary.linreg <-  function(object, ...){
   colnames(coeffs_table_full) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
   rownames(coeffs_table_full) <- rownames(object$beta_hat)
   cat("\nCoefficients:\n")
-  stats::printCoefmat(coeffs_table_full, signif.stars = TRUE)
+  printCoefmat(coeffs_table_full, signif.stars = TRUE)
 
   # Residual standard error and degrees of freedom
   cat("\nResidual standard error:",

@@ -4,10 +4,12 @@
 \alias{pred.linreg}
 \title{Predicted values for a linreg object}
 \usage{
-\method{pred}{linreg}(object)
+\method{pred}{linreg}(object, ...)
 }
 \arguments{
-\item{object}{A linreg object}
+\item{object}{An object of class linreg.}
+
+\item{...}{Additional arguments for compatibility with generic method}
 }
 \value{
 linreg object predicted values

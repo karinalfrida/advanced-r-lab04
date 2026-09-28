@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An object of class linreg}
 
-\item{...}{Additional arguments to be passed to the print method}
+\item{...}{Additional arguments for compatibility with generic method}
 }
 \value{
 Invisibly the linreg object
