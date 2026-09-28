@@ -1,5 +1,6 @@
 ^lab04\.Rproj$
 ^\.Rproj\.user$
+^course-material$
 ^extra$
 ^LICENSE\.md$
 ^^\.*\\.Rproj$$
