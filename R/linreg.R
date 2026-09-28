@@ -26,20 +26,16 @@ linreg <- function(formula, data){
   beta_hat <- qr_results$beta_hat
 
   # y_hat = fitted values
-  y_hat <-  X %*% beta_hat
+  y_hat <- qr_results$y_hat
 
   # e_hat = residuals
-  e_hat <-
-    (y - y_hat) |>
-    as.vector()
+  e_hat <- qr_results$e_hat
 
   # degrees of freedom
-  df <-  nrow(X) - ncol(X)
+  df <- qr_results$df
 
   # sigma_hat_squared = residual variance
-  sigma_hat_squared <-
-    ((t(e_hat) %*% e_hat)/df) |>
-    as.numeric()
+  sigma_hat_squared <- qr_results$sigma_hat_squared
 
   # beta_hat_var = variance of regression coefficients (QR decomposition)
     beta_hat_var <- qr_results$beta_hat_var
