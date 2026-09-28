@@ -46,8 +46,7 @@ linreg <- function(formula, data){
   # beta_hat_var = variance of regression coefficients (ordinary linear algebra)
   beta_hat_var <-
     (sigma_hat_squared * XtX_inv)|> # variance-coariance matrix
-    diag() |> # extracting variances
-    as.numeric()
+    diag() # extracting variances
 
 
   # t_values = t values for the regression coefficients
@@ -56,7 +55,7 @@ linreg <- function(formula, data){
     as.vector()
 
   # p_values = p values for the regression coefficients
-  p_values <- pt(t_values, df= df)
+  p_values <- 2 * pt(-abs(t_values), df)
 
   ### create a linreg object
   linreg_obj <-
