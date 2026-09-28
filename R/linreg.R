@@ -18,6 +18,9 @@ linreg <- function(formula, data){
   y_name <- all.vars(formula)[1]
   y <- data[[y_name]]
 
+  # keep the call
+  call_arg <- match.call()
+
   ### calculate multiple linear regression statistics
   # beta_hat = regression coefficients (ordinary linear algebra)
   Xt <- t(X)
@@ -28,7 +31,9 @@ linreg <- function(formula, data){
   y_hat <-  X %*% beta_hat
 
   # e_hat = residuals
-  e_hat <- y - y_hat
+  e_hat <-
+    (y - y_hat) |>
+    as.vector()
 
   # degrees of freedom
   df <-  nrow(X) - ncol(X)
@@ -41,23 +46,23 @@ linreg <- function(formula, data){
   # beta_hat_var = variance of regression coefficients (ordinary linear algebra)
   beta_hat_var <-
     (sigma_hat_squared * XtX_inv)|> # variance-coariance matrix
-    diag() |> # extracting variances
-    as.numeric()
+    diag() # extracting variances
 
 
   # t_values = t values for the regression coefficients
   t_values <-
     (beta_hat / sqrt(beta_hat_var))|>
-    as.numeric()
+    as.vector()
 
   # p_values = p values for the regression coefficients
-  p_values <- pt(t_values, df= df)
+  p_values <- 2 * pt(-abs(t_values), df)
 
   ### create a linreg object
   linreg_obj <-
     structure(
       list(
         formula = formula,
+        call_arg = call_arg,
         X = X,
         y = y,
         y_name = y_name,
