@@ -21,9 +21,11 @@ linreg <- function(formula, data){
   # keep the call
   call_arg <- match.call()
 
-  ### calculate multiple linear regression statistics (QR decomposition)
-  qr_results <- linreg_qr(X, y)
-  beta_hat <- qr_results$beta_hat
+  ### calculate multiple linear regression statistics
+  # beta_hat = regression coefficients (ordinary linear algebra)
+  Xt <- t(X)
+  XtX_inv <- solve(Xt %*% X)
+  beta_hat <- XtX_inv %*% Xt %*% y
 
   # y_hat = fitted values
   y_hat <-  X %*% beta_hat
@@ -41,8 +43,10 @@ linreg <- function(formula, data){
     ((t(e_hat) %*% e_hat)/df) |>
     as.numeric()
 
-  # beta_hat_var = variance of regression coefficients (QR decomposition)
-    beta_hat_var <- qr_results$beta_hat_var
+  # beta_hat_var = variance of regression coefficients (ordinary linear algebra)
+  beta_hat_var <-
+    (sigma_hat_squared * XtX_inv)|> # variance-coariance matrix
+    diag() # extracting variances
 
 
   # t_values = t values for the regression coefficients
