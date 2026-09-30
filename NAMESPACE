@@ -25,6 +25,5 @@ importFrom(stats,
   coef,
   model.matrix,
   printCoefmat,
-  pt,
-  residuals
+  pt
 )

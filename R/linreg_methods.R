@@ -35,7 +35,6 @@ print.linreg <- function(x, ...){
 #'
 #' @returns linreg object residuals as the difference between predicted and actual response values
 #'
-#' @importFrom stats residuals
 #' @export
 #'
 residuals.linreg <-  function(object, ...){ # stat::resid() calls residuals()
@@ -153,7 +152,7 @@ plot.linreg <- function(x, ...){
   top_std_resid <- plot_df[order(abs(plot_df$std_resid), decreasing = TRUE)[1:3],]
 
   # x axis label, deparse() takes 'formula' and turns it into a string
-  x_label <- paste0("Fitted values\nlinreg(", deparse(x$formula), ")") 
+  x_label <- paste0("Fitted values\nlinreg(", deparse(x$formula), ")")
 
   # Create the plots
   p1 <- ggplot(plot_df, aes(x = .data$fitted, y = .data$resid)) +
@@ -173,7 +172,7 @@ plot.linreg <- function(x, ...){
     labs(title = "Scale-Location", x = x_label, y = expression(sqrt("|Standardized residuals|"))) +
     theme_bw() +
     theme(plot.title = element_text(hjust = 0.5)) # center title
-    
+
   # Print the plots
   print(p1)
   print(p2)
