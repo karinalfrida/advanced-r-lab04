@@ -10,6 +10,11 @@
 #' @export
 linreg <- function(formula, data){
 
+  stopifnot("formula argument must be formula object" =
+              inherits(formula, "formula"),
+            "data argument must be a data frame (or tibble)" =
+              is.data.frame(data))
+
   ### extract model
   # create a model/design matrix from the formula and data
   X <- model.matrix(formula, data) # independent variables
