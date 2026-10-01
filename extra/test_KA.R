@@ -5,9 +5,9 @@ data(iris)
 ### linreg
 linreg_testobj <- linreg(formula =Petal.Length~Species, data = iris)
 
-print.linreg(linreg_testobj)
-resid.linreg(linreg_testobj)
-pred.linreg(linreg_testobj)
+print(linreg_testobj)
+resid(linreg_testobj)
+pred(linreg_testobj)
 coef(linreg_testobj)
 
 ### lm
