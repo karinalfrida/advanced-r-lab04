@@ -17,3 +17,55 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(lab04)
 ```
+
+## Introduction
+
+fits multiple linear regression models. It
+
+The `lab04` package has one main function, `linreg()`. It fits multiple linear
+regression models, which estimates using the QR decomposition, and returns an
+S3 object of class `linreg` !!(input class name wr agree on)!!. The object works with the usual methods
+from base R, such as `print()`, `summary()`, `coef()`, `resid()`, `pred()` and `plot()`.
+
+The examples in this vignette use the `iris` dataset, which is included in R.
+The dataset contains measurements of 150 flowers from three species (*setosa*,
+*versicolor* and *virginica*).
+
+The vignette first describes how `linreg()` works. It then fits a model and
+shows each of the methods that can be used on the result.
+
+## The linreg() function
+
+### Usage
+
+```r
+linreg(formula, data)
+```
+
+
+
+## Fitting a model
+
+TODO
+
+```{r}
+mod <- linreg(Petal.Length ~ Species, data = iris)
+class(mod)
+names(mod)
+```
+
+## Methods
+
+### print()
+
+### summary()
+
+### coef()
+
+### resid()
+
+### pred()
+
+### plot()
+
+
