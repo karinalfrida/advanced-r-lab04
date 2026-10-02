@@ -19,7 +19,7 @@ pak::pak("karinalfrida/advanced-r-lab04")
 
 ## Example
 
-This is a basic example which shows you how the similarities with the lm() function:
+This is a basic example which shows you the similarities with the lm() function:
 
 ``` r
 library(lab04)
