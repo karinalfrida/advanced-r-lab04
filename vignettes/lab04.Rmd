@@ -3,8 +3,11 @@ title: "lab04"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{lab04}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include = FALSE}
@@ -14,54 +17,69 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(lab04)
-```
-
 ## Introduction
 
-The `lab04` package has one main function, `linreg()`. It fits multiple linear
-regression models, which estimates using the QR decomposition, and returns an
-S3 object of class `my_linreg`. The object works with the usual methods
-from base R, such as `print()`, `summary()`, `coef()`, `resid()`, `pred()` and `plot()`.
+The `lab04` package has one main function, `linreg()`. It fits multiple
+linear regression models, which estimates using the QR decomposition,
+and returns an S3 object of class `my_linreg`. The object works with the
+usual methods from base R, such as `print()`, `summary()`, `coef()`,
+`resid()`, `pred()` and `plot()`.
 
-The examples in this vignette use the `iris` dataset, which is included in R.
-The dataset contains measurements of 150 flowers from three species (*setosa*,
-*versicolor* and *virginica*).
+The examples in this vignette use the `iris` dataset, which is included
+in R. The dataset contains measurements of 150 flowers from three
+species (*setosa*, *versicolor* and *virginica*).
 
-The vignette first describes how `linreg()` works. It then fits a model and
-shows each of the methods that can be used on the result.
+The vignette first describes how the package is installed, and how
+`linreg()` works. It then fits a model and shows each of the methods
+that can be used on the resulting object.
+
+## Installing and loading the package
+
+The package can be installed using
+
+```{r, results = 'hide', message=FALSE}
+pak::pkg_install("https://github.com/karinalfrida/advanced-r-lab04")
+```
+
+and then, when successfully installed, be loaded
+
+```{r}
+library(lab04)
+```
 
 ## The linreg() function
 
 ### Usage
 
-```r
+``` r
 linreg(formula, data)
 ```
 
-- `formula`: a formula of the form `y ~ x1 + x2 + ...`, the same as for `lm()`.
+- `formula`: a formula of the form `y ~ x1 + x2 + ...`, the same as for
+  `lm()`.
 - `data`: a data frame containing the variables in the formula.
 
-The function first checks that `formula` is a formula and that `data` is a data
-frame, and stops with an error message if they are not.
+The function first checks that `formula` is a formula and that `data` is
+a data frame, and stops with an error message if they are not.
 
 ### How the model is estimated
 
 The design matrix $\mathbf{X}$ is created from the formula with
-`model.matrix()`, and the response $\mathbf{y}$ is taken from the data using
-`all.vars()`. The model is
+`model.matrix()`, and the response $\mathbf{y}$ is taken from the data
+using `all.vars()`. The model is
 
 $$\mathbf{y} = \mathbf{X}\beta + \varepsilon.$$
 
-Instead of calculating $(\mathbf{X}^T\mathbf{X})^{-1}$ directly, `linreg()` use
-QR decomposition $\mathbf{X} = \mathbf{Q}\mathbf{R}$, where $\mathbf{Q}$ is
-orthogonal ($\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$), and $\mathbf{R}$ is upper
-triangular. This is seen as numerically more stable and is also what `lm()` does.
+Instead of calculating $(\mathbf{X}^T\mathbf{X})^{-1}$ directly,
+`linreg()` use QR decomposition $\mathbf{X} = \mathbf{Q}\mathbf{R}$,
+where $\mathbf{Q}$ is orthogonal
+($\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$), and $\mathbf{R}$ is upper
+triangular. This is seen as numerically more stable and is also what
+`lm()` does.
 
-**Coefficients;**
-Since $\mathbf{X}^T\mathbf{X} = \mathbf{R}^T\mathbf{R}$, the
-normal equations reduce to
+**Coefficients;** Since
+$\mathbf{X}^T\mathbf{X} = \mathbf{R}^T\mathbf{R}$, the normal equations
+reduce to
 
 $$\mathbf{R}\hat\beta = \mathbf{Q}^T\mathbf{y}$$
 
@@ -72,27 +90,28 @@ triangular matrix.
 
 $$\hat{\mathbf{y}} = \mathbf{X}\hat\beta, \qquad \hat{\mathbf{e}} = \mathbf{y} - \hat{\mathbf{y}}$$
 
-**Degrees of freedom and residual variance;** With $n$ observations and $p$
-parameters,
+**Degrees of freedom and residual variance;** With $n$ observations and
+$p$ parameters,
 
 $$df = n - p, \qquad \hat\sigma^2 = \frac{\hat{\mathbf{e}}^T\hat{\mathbf{e}}}{df}.$$
 
 **Variance of the coefficients;** Using QR decomposition,
-$(\mathbf{X}^T\mathbf{X})^{-1}$ becomes $\mathbf{R}^{-1}(\mathbf{R}^{-1})^T$, thus,
+$(\mathbf{X}^T\mathbf{X})^{-1}$ becomes
+$\mathbf{R}^{-1}(\mathbf{R}^{-1})^T$, thus,
 
 $$\widehat{\text{Var}}(\hat\beta) = \hat\sigma^2 \, \mathbf{R}^{-1}(\mathbf{R}^{-1})^T,$$
 
-where the diagonal of this matrix gives the variance of the coefficients.
+where the diagonal of this matrix gives the variance of the
+coefficients.
 
 **t-values and p-values;**
 
 $$t_{\beta} = \frac{\hat\beta}{\sqrt{\widehat{\text{Var}}(\hat\beta)}}$$
 
-The two-sided p-values are calculated from the $t$-distribution with $df$
-degrees of freedom using `pt()`.
+The two-sided p-values are calculated from the $t$-distribution with
+$df$ degrees of freedom using `pt()`.
 
 ## Fitting a model
-
 
 ```{r}
 mod <- linreg(Petal.Length ~ Species, data = iris)
@@ -102,16 +121,133 @@ names(mod)
 
 ## Methods
 
+The package includes the methods `print`, `summary`, `coef`, `resid`,
+`pred`, and `plot.` The metod functions import necessary fucntions from
+the `stats` and `ggplot2` packages.
+
 ### print()
+
+Prints the regression coefficients of a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+print(x)
+```
+
+- `x` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`print` example:
+
+```{r}
+print(mod)
+```
 
 ### summary()
 
+Prints a summary of the regression results for a linreg object.
+Invisibly returns the linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+summary(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`summary` example:
+
+```{r}
+summary(mod)
+```
+
 ### coef()
 
-### resid()
+Returns a named vector of regression coefficients of a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+coef(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`coef` example:
+
+```{r}
+coef(mod)
+```
+
+### resid(), residuals()
+
+Returns an array of linear regression residuals as the difference
+between predicted and actual response values. `resid()` and
+`residuals()` are synonyms.
+
+#### Usage
+
+```{r, eval = FALSE}
+resid(object)
+residuals(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`resid` example (output here limited to the 5 first lines):
+
+```{r}
+resid(mod) |> 
+  head(5)
+```
 
 ### pred()
 
+Returns an array of the predicted values for a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+pred(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`pred` example (output here limited to the 5 first lines):
+
+```{r}
+pred(mod) |> 
+  head(5)
+```
+
 ### plot()
 
+Prints two diagnostic plots for a linreg object. Invisibly returns a
+list with two ggplot2 objects.
 
+#### Usage
+
+```{r, eval = FALSE}
+plot(x)
+```
+
+- `x` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic
+  method
+
+`plot` example:
+
+```{r}
+plot(mod)
+```
