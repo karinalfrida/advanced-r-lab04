@@ -14,11 +14,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r, include = FALSE}
+library(lab04)
+```
+
+
 ## Introduction
 
 The `lab04` package has one main function, `linreg()`. It fits multiple
 linear regression models, which estimates using the QR decomposition,
-and returns an S3 object of class `my_linreg`. The object works with the
+and returns an S3 object of class `linreg`. The object works with the
 usual methods from base R, such as `print()`, `summary()`, `coef()`,
 `resid()`, `pred()` and `plot()`.
 
@@ -26,31 +31,13 @@ The examples in this vignette use the `iris` dataset, which is included
 in R. The dataset contains measurements of 150 flowers from three
 species (*setosa*, *versicolor* and *virginica*).
 
-The vignette first describes how the package is installed, and how
-`linreg()` works. It then fits a model and shows each of the methods
-that can be used on the resulting object.
-
-## Installing and loading the package
-
-The package can be installed using
-
-```{r, results = 'hide', message=FALSE}
-pak::pkg_install("https://github.com/karinalfrida/advanced-r-lab04")
-```
-
-and then, when successfully installed, be loaded
-
-```{r}
-library(lab04)
-```
+The vignette first describes how `linreg()` works. It then fits a model and shows each of the methods that can be used on the resulting object.
 
 ## The linreg() function
 
 ### Usage
 
-``` r
-linreg(formula, data)
-```
+`linreg(formula, data)`
 
 - `formula`: a formula of the form `y ~ x1 + x2 + ...`, the same as for
   `lm()`.
@@ -128,9 +115,7 @@ Prints the regression coefficients of a linreg object.
 
 #### Usage
 
-```{r, eval = FALSE}
-print(x)
-```
+`print(x)`
 
 - `x` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
@@ -149,9 +134,7 @@ Invisibly returns the linreg object.
 
 #### Usage
 
-```{r, eval = FALSE}
-summary(object)
-```
+`summary(object)`
 
 - `object` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
@@ -169,9 +152,7 @@ Returns a named vector of regression coefficients of a linreg object.
 
 #### Usage
 
-```{r, eval = FALSE}
-coef(object)
-```
+`coef(object)`
 
 - `object` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
@@ -191,10 +172,8 @@ between predicted and actual response values. `resid()` and
 
 #### Usage
 
-```{r, eval = FALSE}
-resid(object)
-residuals(object)
-```
+`resid(object)`  
+`residuals(object)`
 
 - `object` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
@@ -213,9 +192,7 @@ Returns an array of the predicted values for a linreg object.
 
 #### Usage
 
-```{r, eval = FALSE}
-pred(object)
-```
+`pred(object)`
 
 - `object` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
@@ -235,9 +212,7 @@ list with two ggplot2 objects.
 
 #### Usage
 
-```{r, eval = FALSE}
-plot(x)
-```
+`plot(x)`
 
 - `x` : An object of class linreg
 - `...` : Optional additional arguments for compatibility with generic
