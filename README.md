@@ -10,11 +10,18 @@ calculating regression statistics and providing relevant methods for the object 
 
 ## Installation
 
-You can install the development version of lab04 from [GitHub](https://github.com/) with:
+You can install the development version of lab04 from [GitHub](https://github.com/):
 
-``` r
-pak::pkg_install("https://github.com/karinalfrida/advanced-r-lab04")
-```
+"https://github.com/karinalfrida/advanced-r-lab04"
+
+You might need to 
+
+`options(pkg.build_vignettes = TRUE)`
+
+for the vignette to be properly accessible by `browseVignettes("lab04")` if you use
+
+`pak::pkg_install()`for the installation.
+
 
 ## Example
 
