@@ -12,7 +12,7 @@
 \item{...}{Additional arguments for compatibility with generic method}
 }
 \value{
-linreg object regression coefficients
+A named vector of regression coefficients
 }
 \description{
 Regression coefficients for a linreg object

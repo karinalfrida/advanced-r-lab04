@@ -12,7 +12,7 @@
 \item{...}{Additional arguments for compatibility with generic method}
 }
 \value{
-linreg object residuals as the difference between predicted and actual response values
+An array of residuals as the difference between predicted and actual response values
 }
 \description{
 Residuals for a linreg object

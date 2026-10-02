@@ -14,6 +14,147 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+## Installing and loading the package
+
+The package can be installed using
+
+```{r, results = 'hide', message=FALSE}
+pak::pkg_install("https://github.com/karinalfrida/advanced-r-lab04")
+```
+
+and then, when successfully installed, be loaded
+
+```{r}
 library(lab04)
+```
+
+```{r, include = FALSE}
+mod <- linreg(Petal.Length ~ Species, data = iris)
+```
+
+
+## Methods
+
+The package includes the methods `print`, `summary`, `coef`, `resid`, `pred`, and `plot.`
+The metod functions import necessary fucntions from the `stats` and `ggplot2` packages.
+
+### print()
+
+Prints the regression coefficients of a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+print(x)
+```
+
+- `x` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`print` example:
+
+```{r}
+print(mod)
+```
+
+### summary()
+
+Prints a summary of the regression results for a linreg object.
+Invisibly returns the linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+summary(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`summary` example:
+
+```{r}
+summary(mod)
+```
+
+### coef()
+
+Returns a named vector of regression coefficients of a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+coef(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`coef` example:
+
+```{r}
+coef(mod)
+```
+
+### resid(), residuals()
+
+Returns an array of linear regression residuals as the difference between predicted and actual response values. `resid()` and `residuals()` are synonyms.
+
+
+#### Usage
+
+```{r, eval = FALSE}
+resid(object)
+residuals(object)
+```
+
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`resid` example (output here limited to the 10 first lines):
+
+```{r}
+resid(mod) |> 
+  head(10)
+```
+
+### pred()
+
+Returns an array of the predicted values for a linreg object.
+
+#### Usage
+
+```{r, eval = FALSE}
+pred(object)
+```
+
+- `object` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`pred` example (output here limited to the 10 first lines):
+
+```{r}
+pred(mod) |> 
+  head(10)
+```
+
+### plot()
+
+Prints two diagnostic plots for a linreg object.
+Invisibly returns a list with two ggplot2 objects.
+
+#### Usage
+
+```{r, eval = FALSE}
+plot(x)
+```
+
+- `x` : An object of class linreg
+- `...` : Optional additional arguments for compatibility with generic method
+
+`plot` example:
+
+```{r}
+plot(mod)
 ```

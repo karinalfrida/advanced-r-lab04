@@ -11,8 +11,6 @@
 #' @export
 #'
 print.linreg <- function(x, ...){
-  # cat("Linear regression call:\n")
-  # print(x$formula)
 
   print(x$call_arg)
 
@@ -33,7 +31,7 @@ print.linreg <- function(x, ...){
 #' @param object An object of class linreg.
 #' @param ... Additional arguments for compatibility with generic method
 #'
-#' @returns linreg object residuals as the difference between predicted and actual response values
+#' @returns An array of residuals as the difference between predicted and actual response values
 #'
 #' @export
 #'
@@ -71,7 +69,7 @@ pred.linreg <-  function(object, ...){
 #' @param object An object of class linreg
 #' @param ... Additional arguments for compatibility with generic method
 #'
-#' @returns linreg object regression coefficients
+#' @returns A named vector of regression coefficients
 #'
 #' @importFrom stats coef
 #' @export
@@ -86,7 +84,7 @@ coef.linreg <-  function(object, ...){
 }
 
 
-#' Summary of regression results for a linreg object
+#' Summary of the regression results for a linreg object
 #'
 #' @param object An object of class linreg
 #' @param ... Additional arguments for compatibility with generic method
@@ -141,7 +139,6 @@ plot.linreg <- function(x, ...){
     resid = x$e_hat |> as.vector(),
     obs = x$e_hat |> as.vector() |> seq_along()
   )
-
 
   # Add standardized residuals and sqrt of absolute standardized residuals to df
   plot_df$std_resid <- plot_df$resid / sqrt(x$sigma_hat_squared) # might want to add leverage adjustment here

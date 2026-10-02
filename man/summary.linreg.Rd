@@ -2,7 +2,7 @@
 % Please edit documentation in R/linreg_methods.R
 \name{summary.linreg}
 \alias{summary.linreg}
-\title{Summary of regression results for a linreg object}
+\title{Summary of the regression results for a linreg object}
 \usage{
 \method{summary}{linreg}(object, ...)
 }
@@ -15,5 +15,5 @@
 Invisibly the linreg object
 }
 \description{
-Summary of regression results for a linreg object
+Summary of the regression results for a linreg object
 }
